@@ -1,15 +1,15 @@
 import { useState } from "react";
-import Balance, { BalanceProps } from "../components/Balance";
+import Account, { AccountProps } from "../components/Account";
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser, updateUser } from '../app/features/userSlice'; 
+import { updateUser } from '../app/features/userSlice'; 
 
 interface ProfileProps {
     firstName?: string;
     lastName?: string;
-    balances?: BalanceProps[]
+    accounts?: AccountProps[]
 }
 
-const userBalances: BalanceProps[] = [
+const userAccounts: AccountProps[] = [
     {
         name: 'Checking',
         amount: 2082.79,
@@ -32,7 +32,7 @@ const userBalances: BalanceProps[] = [
 
 const Profile: React.FC<ProfileProps> = () => {
     const [isEdit, setIsEdit] = useState(false)
-    const balances = userBalances
+    const accounts = userAccounts
     const dispatch = useDispatch()
     const user = useSelector((state: any) => state.user)
     const edit = async (e:any) => {
@@ -61,8 +61,8 @@ const Profile: React.FC<ProfileProps> = () => {
             <section className="grid gap-4 place-items-center p-8">
                 <div className="grid gap-4 w-full">
                     {
-                        balances?.map((balance, index) =>
-                            <Balance key={index} name={balance.name} type={balance.type}  cryptogram={balance.cryptogram}  amount={balance.amount}/>
+                        accounts?.map((account, index) =>
+                            <Account key={index} name={account.name} type={account.type}  cryptogram={account.cryptogram}  amount={account.amount}/>
                         )
                     }
                 </div>

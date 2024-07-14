@@ -49,7 +49,7 @@ const TransactionPage = () => {
         }
     ];
 
-    const totalBalance = transactions.reduce((acc, transaction) => acc + transaction.amount, 0);
+    const totalAccount = transactions.reduce((acc, transaction) => acc + transaction.amount, 0);
 
     return (
         <div className="h-full w-full bg-ternary">
@@ -60,8 +60,8 @@ const TransactionPage = () => {
                         <p className="md:text-lg font-light">Argent Bank</p>
                         <span className="md:text-lg font-light">x6712</span>
                     </div>
-                    <p className="text-xl md:text-4xl font-semibold">{totalBalance}$</p>
-                    <p className="text-sm md:text-lg font-light capitalize">Current Balance</p>
+                    <p className="text-xl md:text-4xl font-semibold">{totalAccount}$</p>
+                    <p className="text-sm md:text-lg font-light capitalize">Current Account</p>
                 </div>
             </div>
             <div className="md:w-4/5 mx-auto mt-4">
@@ -71,7 +71,7 @@ const TransactionPage = () => {
                             <th>Date</th>
                             <th>Description</th>
                             <th>Amount</th>
-                            <th>Balance</th>
+                            <th>Account</th>
                         </tr>
                     </thead>
                 </table>

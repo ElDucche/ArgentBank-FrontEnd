@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
-export type BalanceProps = {
+export type AccountProps = {
     amount: number;
     name: string;
     cryptogram: string;
     type: "current" | "available"
 }
 
-const Balance: React.FC<BalanceProps> = ({ name, amount, cryptogram, type }) => {
+const Account: React.FC<AccountProps> = ({ name, amount, cryptogram, type }) => {
     const usd = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
@@ -22,10 +22,10 @@ const Balance: React.FC<BalanceProps> = ({ name, amount, cryptogram, type }) => 
                     <span className="text-lg font-light">{cryptogram}</span>
                 </div>
                 <p className=" text-4xl font-semibold">{usd.format(amount)}</p>
-                <p className=" text-lg font-light capitalize">{type} Balance</p>
+                <p className=" text-lg font-light capitalize">{type} Account</p>
             </div>
             <Link to={`/profile/x6712`} className="md:h-12 md:px-4 cta-button p-2 text-lg">View transactions</Link>
         </div>
     )
 }
-export default Balance
+export default Account
