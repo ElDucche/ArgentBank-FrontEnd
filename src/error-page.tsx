@@ -11,7 +11,7 @@ export default function ErrorPage() {
             <Navbar firstName={user.firstName}/>
             <div className="grid w-screen h-full place-items-center place-content-center bg-ternary">
                 <div className="border-2 border-black grid gap-3 p-6 cursor-pointer bg-white">
-                    <h1 className="font-bold text-7xl">Error !</h1>
+                    <h1 className="font-bold text-7xl">Erreur !</h1>
                     <p className="font-light text-black/30">
                         <i>{error.statusText || error.message}</i>
                     </p>

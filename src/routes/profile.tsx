@@ -41,7 +41,7 @@ const Profile: React.FC<ProfileProps> = () => {
         await dispatch(updateUser({ firstName: firstname.value, lastName: lastname.value, token: user.token}));
         setIsEdit(false)
     }
-    if (user.token === null) {
+    if (user.token === '') {
         throw new Error("Vous n'êtes pas connecté")
     }
 
