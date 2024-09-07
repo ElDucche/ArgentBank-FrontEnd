@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Account, { AccountProps } from "../components/Account";
-import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../app/features/userSlice'; 
+import { useAppDispatch } from "../app/hook/hook";
+import { useSelector } from "react-redux";
 
 interface ProfileProps {
     firstName?: string;
@@ -33,7 +34,7 @@ const userAccounts: AccountProps[] = [
 const Profile: React.FC<ProfileProps> = () => {
     const [isEdit, setIsEdit] = useState(false)
     const accounts = userAccounts
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const user = useSelector((state: any) => state.user)
     const edit = async (e:any) => {
         e.preventDefault()

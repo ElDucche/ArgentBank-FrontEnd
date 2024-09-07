@@ -5,3 +5,7 @@ export type UserState = {
     token: string;
     remember: boolean;
 }
+
+export type ReduxType = {
+    user : UserState
+}

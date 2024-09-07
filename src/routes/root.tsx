@@ -1,16 +1,15 @@
 import { Outlet } from "react-router-dom"
 import Navbar from "../components/Navbar"
-// import useLogoutOnExit from "../app/hook/useLogoutOnExit"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { profileUser } from "../app/features/userSlice"
-import { Dispatch} from "@reduxjs/toolkit"
+import { useAppDispatch } from "../app/hook/hook"
 
 
 
 const Layout = () => {
   const user = useSelector((state: any) => state.user)
-  const dispatch = useDispatch<Dispatch>();
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     const storeUser = async () => {

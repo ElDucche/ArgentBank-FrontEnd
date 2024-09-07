@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { UserState} from '../../../types.d.ts';
 
 
@@ -88,6 +88,9 @@ const userSlice = createSlice({
           if (action.payload?.remember) {
             localStorage.setItem('token', action.payload.token)
           }
+        });
+        builder.addCase(loginUser.rejected, (state, action) => {
+          action.payload = 'Invalid email or password';
         });
         builder.addCase(profileUser.fulfilled, (state, action) => {
           const { firstName, lastName, email } = action.payload;

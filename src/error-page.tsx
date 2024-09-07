@@ -1,11 +1,12 @@
 import { useRouteError } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { useSelector } from "react-redux";
+import { ReduxType } from "../types";
 
 export default function ErrorPage() {
     const error = useRouteError();
     console.log(error)
-    const user = useSelector((state: any) => state.user)
+    const user = useSelector((state: ReduxType) => state.user)
     return (
         <div className="h-screen flex flex-col">
             <Navbar firstName={user.firstName}/>
@@ -13,7 +14,7 @@ export default function ErrorPage() {
                 <div className="border-2 border-black grid gap-3 p-6 cursor-pointer bg-white">
                     <h1 className="font-bold text-7xl">Erreur !</h1>
                     <p className="font-light text-black/30">
-                        <i>{error.statusText || error.message}</i>
+                        <i> {(error as Error).message}</i>
                     </p>
                 </div>
             </div>
