@@ -8,7 +8,7 @@ import './index.css'
 import Home from './routes/home';
 import Signin from './routes/signin';
 import Profile from './routes/profile';
-import store from './app/store'
+import {store} from './app/store'
 import { Provider } from 'react-redux'
 import TransactionPage from './components/TransactionPage';
 

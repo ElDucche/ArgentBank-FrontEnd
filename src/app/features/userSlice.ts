@@ -12,7 +12,7 @@ const initialState: Partial<UserState> = {
 
 export const loginUser = createAsyncThunk(
     'user/loginUser',
-    async ({email, password, remember}:{email:string, password:string, remember:boolean},thunkAPI) => {
+    async ({email, password, remember}:{email:string, password:string, remember:boolean}) => {
       const response = await fetch('http://localhost:3001/api/v1/user/login', {
         method: 'POST',
         headers: {
@@ -34,7 +34,7 @@ export const loginUser = createAsyncThunk(
 
 export const profileUser = createAsyncThunk(
     'user/profileUser',
-    async (token:string, thunkAPI) => {
+    async (token:string) => {
       const response = await fetch('http://localhost:3001/api/v1/user/profile', {
         method: 'POST',
         headers: {
@@ -50,7 +50,7 @@ export const profileUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   'user/updateUser',
-  async ({firstName, lastName, token}:{firstName:string, lastName:string, token:string}, thunkAPI) => {
+  async ({firstName, lastName, token}:{firstName:string, lastName:string, token:string}) => {
     const response = await fetch('http://localhost:3001/api/v1/user/profile', {
       method: 'PUT',
       headers: {
@@ -90,7 +90,7 @@ const userSlice = createSlice({
           }
         });
         builder.addCase(loginUser.rejected, (state, action) => {
-          action.payload = 'Invalid email or password';
+          action.payload = 'Invalid email or password'
         });
         builder.addCase(profileUser.fulfilled, (state, action) => {
           const { firstName, lastName, email } = action.payload;

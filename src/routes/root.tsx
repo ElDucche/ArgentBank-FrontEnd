@@ -1,14 +1,15 @@
 import { Outlet } from "react-router-dom"
 import Navbar from "../components/Navbar"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { useEffect } from "react"
 import { profileUser } from "../app/features/userSlice"
 import { useAppDispatch } from "../app/hook/hook"
+import { ReduxType } from "../../types"
 
 
 
 const Layout = () => {
-  const user = useSelector((state: any) => state.user)
+  const user = useSelector((state: ReduxType) => state.user)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const Layout = () => {
     storeUser();
 
     // Fonction pour gérer les changements de localStorage
-    const handleStorageChange = (event: any) => {
+    const handleStorageChange = (event: StorageEvent) => {
       if (event.key === 'token' && event.newValue) {
         storeUser(); // Rappel si le token est mis à jour
       }

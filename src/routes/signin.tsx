@@ -8,13 +8,13 @@ const Signin = () => {
     const [errorMsg, setErrorMsg] = useState('');
     const dispatch = useAppDispatch();
 
-    const onSubmit = async (e: any) => {
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault(); 
       const formData = new FormData(e.currentTarget);
       const entries = Object.fromEntries(formData.entries());
-      dispatch(loginUser({ email: e.target.email.value, password: e.target.password.value, remember: entries.remember === 'on'})).then((data: any) => {
+      dispatch(loginUser({ email: String(entries.email), password:String(entries.password), remember: entries.remember === 'on'})).then((data: any) => {
         if (data.type === 'user/loginUser/rejected') return setErrorMsg(data.payload)
-        dispatch(profileUser(data.payload.token)).then(() => {navigate('/profile')})
+        dispatch(profileUser(data.payload.token)).then(() => navigate('/profile'))
       })
     };
   const navigate = useNavigate()

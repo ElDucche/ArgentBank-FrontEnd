@@ -3,6 +3,7 @@ import Account, { AccountProps } from "../components/Account";
 import { updateUser } from '../app/features/userSlice'; 
 import { useAppDispatch } from "../app/hook/hook";
 import { useSelector } from "react-redux";
+import { ReduxType } from "../../types";
 
 interface ProfileProps {
     firstName?: string;
@@ -35,13 +36,16 @@ const Profile: React.FC<ProfileProps> = () => {
     const [isEdit, setIsEdit] = useState(false)
     const accounts = userAccounts
     const dispatch = useAppDispatch()
-    const user = useSelector((state: any) => state.user)
-    const edit = async (e:any) => {
-        e.preventDefault()
-        const { firstname, lastname } = e.target.elements;
-        await dispatch(updateUser({ firstName: firstname.value, lastName: lastname.value, token: user.token}));
-        setIsEdit(false)
-    }
+    const user = useSelector((state: ReduxType) => state.user)
+    const edit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+        const firstname = form.elements.namedItem('firstname') as HTMLInputElement;
+        const lastname = form.elements.namedItem('lastname') as HTMLInputElement;
+    
+        await dispatch(updateUser({ firstName: firstname.value, lastName: lastname.value, token: user.token }));
+        setIsEdit(false);
+      };
     if (user.token === '') {
         throw new Error("Vous n'êtes pas connecté")
     }
